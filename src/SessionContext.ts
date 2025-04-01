@@ -7,7 +7,7 @@ export interface Session {
     image?: string;
     firstName?: string;
     lastName?: string;
-  };
+  },
 }
 
 interface SessionContextType {
