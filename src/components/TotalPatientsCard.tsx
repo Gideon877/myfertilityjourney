@@ -1,7 +1,10 @@
 import React from 'react';
 import { Card, Typography, Box, CircularProgress } from "@mui/material";
 
-const CircularProgressWithLabel = ({ value, color }) => {
+const CircularProgressWithLabel: React.FC<{
+    value: number,
+    color: string,
+}> = ({ value, color }) => {
     return (
         <Box sx={{ position: 'relative', display: "inline-flex" }} >
             <CircularProgress variant="determinate" value={100} sx={{ color: "#E0E0E0" }} size={60} thickness={5} />
@@ -30,10 +33,10 @@ const CircularProgressWithLabel = ({ value, color }) => {
     );
 };
 
-const TotalPatientsCard = ({ progressData }) => {
+const TotalPatientsCard: React.FC<{ progressData: any }> = ({ progressData }) => {
     return (
         <Card sx={{ display: "flex", justifyContent: "space-around", p: 2, borderRadius: 3, boxShadow: 2 }}>
-            {progressData.map((item, index) => (
+            {progressData.map((item: any, index: number) => (
                 <Box key={index} display="flex" alignItems="center" gap={2}>
                     <CircularProgressWithLabel value={item.value} color={item.color} />
                     <Box textAlign="left" m={3}>

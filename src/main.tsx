@@ -9,8 +9,6 @@ import ProfilePage from './pages/profile';
 import UsersPage from './pages/users';
 import PatientsPage from './pages/patients';
 import LogsPage from './pages/logs';
-import { ThemeProvider } from '@emotion/react';
-import theme from '../theme';
 
 const router = createBrowserRouter([
     {

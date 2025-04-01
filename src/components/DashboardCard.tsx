@@ -1,10 +1,15 @@
-import React, { useEffect } from 'react';
-import { Box, Typography, Paper, Grid, Card, CardContent } from '@mui/material';
+import React from 'react';
+import { Box, Typography, Card, CardContent } from '@mui/material';
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import Icon from '@mdi/react';
 
 
-const DashboardCard = ({ title, value, icon, percentage }) => {
+const DashboardCard: React.FC<{
+    title: string,
+    value: number,
+    icon: string,
+    percentage: number
+}> = ({ title, value, icon, percentage }) => {
 
     return (
         <Card
@@ -23,7 +28,7 @@ const DashboardCard = ({ title, value, icon, percentage }) => {
                     variant="body2"
                     sx={{
                         fontWeight: '600',
-                        
+
                     }}
                     color="text.secondary"
                 >

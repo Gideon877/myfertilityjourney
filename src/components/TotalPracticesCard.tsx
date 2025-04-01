@@ -6,7 +6,7 @@ import EditIcon from "@mui/icons-material/DriveFileRenameOutline";
 import DeleteIcon from "@mui/icons-material/DeleteOutline";
 import EditPracticeModal from "./EditPracticeModal";
 
-const TotalPracticesCard = () => {
+const TotalPracticesCard: React.FC = () => {
     const [rows, setRows] = useState([
         { id: 1, name: "Cape Fertility Clinic", tel: "+21 794 3956", email: "info@capefertility.co.za", date: "04/10/2021", status: "Active" },
         { id: 2, name: "Cape Fertility Clinic", tel: "+21 794 3956", email: "info@capefertility.co.za", date: "04/10/2021", status: "Active" },
@@ -18,20 +18,20 @@ const TotalPracticesCard = () => {
     const [openEditModal, setOpenEditModal] = useState(false);
     const [selectedPractice, setSelectedPractice] = useState<any | null>(null);
 
-    const handleEditClick = (id) => {
+    const handleEditClick = (id: any) => {
         const practice = rows.find((row) => row.id === id);
         setSelectedPractice(practice);
         setOpenEditModal(true);
     };
 
-    const handleSaveEdit = (editedPractice) => {
+    const handleSaveEdit = (editedPractice: any) => {
         const updatedRows = rows.map((row) =>
             row.id === editedPractice.id ? editedPractice : row
         );
         setRows(updatedRows);
     };
 
-    const handleDeleteClick = (id) => {
+    const handleDeleteClick = (id: any) => {
         setDeleteRowId(id);
         setOpenDeleteDialog(true);
     };
@@ -54,8 +54,8 @@ const TotalPracticesCard = () => {
             field: "status",
             headerName: "Status",
             flex: 1,
-            renderCell: (params) => {
-                const handleStatusChange = (event) => {
+            renderCell: (params: any) => {
+                const handleStatusChange = (event: any) => {
                     const updatedRows = rows.map((row) =>
                         row.id === params.id ? { ...row, status: event.target.checked ? 'Active' : 'Disabled' } : row
                     );
@@ -80,7 +80,7 @@ const TotalPracticesCard = () => {
             field: "actions",
             headerName: "Actions",
             flex: 1,
-            renderCell: (params) => (
+            renderCell: (params: any) => (
                 <Box>
                     <IconButton size="small" onClick={() => handleEditClick(params.id)}>
                         <EditIcon fontSize="small" />

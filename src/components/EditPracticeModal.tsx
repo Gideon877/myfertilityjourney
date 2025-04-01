@@ -2,7 +2,12 @@
 import React, { useState, useEffect } from "react";
 import { Dialog, DialogTitle, DialogContent, DialogActions, TextField, Button } from "@mui/material";
 
-const EditPracticeModal = ({ open, onClose, practice, onSave }) => {
+const EditPracticeModal: React.FC<{
+    open: boolean,
+    onClose: () => void,
+    practice: any | null,
+    onSave: (practice: any) => void,
+}> = ({ open, onClose, practice, onSave }) => {
     const [editedPractice, setEditedPractice] = useState<any | null>({});
 
     useEffect(() => {
@@ -11,7 +16,7 @@ const EditPracticeModal = ({ open, onClose, practice, onSave }) => {
         }
     }, [practice]);
 
-    const handleChange = (e) => {
+    const handleChange = (e: any) => {
         setEditedPractice({ ...editedPractice, [e.target.name]: e.target.value });
     };
 

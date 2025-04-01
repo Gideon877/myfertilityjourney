@@ -1,6 +1,6 @@
 import React, { Fragment, useContext } from 'react';
-import { Box, Typography, Container, Grid } from '@mui/material';
-import SessionContext, { type Session } from "../SessionContext";
+import { Box, Typography, Grid } from '@mui/material';
+import SessionContext from "../SessionContext";
 import DashboardCard from '../components/DashboardCard';
 import { dashboardCardData } from '../utils/data';
 import PercentageCard from '../components/CircularProgressWithLabel';
@@ -31,9 +31,9 @@ const Home: React.FC = () => {
                         <Grid size={4} key={index}>
                             <DashboardCard
                                 title={card.title}
-                                value={card.value}
+                                value={Number(card.value)}
                                 icon={card.icon}
-                                percentage={card.percentage}
+                                percentage={Number(card.percentage)}
                             />
                         </Grid>
                     ))}

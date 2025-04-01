@@ -46,13 +46,27 @@ export const dashboardCardData = [
     },
 ];
 
-export const circularProgressData = [
+interface CircularProgressItem {
+    value: number;
+    label: 'Pending' | 'Registered' | 'Post Treatment';
+    color: string;
+}
+
+export const circularProgressData: CircularProgressItem[] = [
     { value: 24, label: "Pending", color: "#FF966B" },
     { value: 56, label: "Registered", color: "#54D62C" },
     { value: 20, label: "Post Treatment", color: "#1890FF" },
 ]
 
-export const patientData = [
+export interface Patient {
+    id: number;
+    name: string;
+    age: number;
+    status: 'Pending' | 'Registered' | 'Post Treatment';
+    treatment: string;
+}
+
+export const patientData: Patient[] = [
     { id: 1, name: 'Alice Smith', age: 32, status: 'Pending', treatment: 'Fertility Treatment A' },
     { id: 2, name: 'Bob Johnson', age: 45, status: 'Registered', treatment: 'Fertility Treatment B' },
     { id: 3, name: 'Charlie Brown', age: 28, status: 'Post Treatment', treatment: 'Post-Natal Care' },

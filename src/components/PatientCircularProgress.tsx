@@ -1,8 +1,5 @@
 import React from "react";
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import { Card, CardContent, Typography, Box, CircularProgress } from '@mui/material';
-
-
+import { Card, Typography, Box, CircularProgress } from '@mui/material';
 
 const PatientCircularProgress: React.FC<{ value: number; label: string; color: string }> = ({ value, label, color }) => {
     return (

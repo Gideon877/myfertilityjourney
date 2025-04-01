@@ -8,13 +8,13 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 
 
 import { useSession } from '../SessionContext';
-import { Badge, Button, IconButton } from '@mui/material';
+import { Badge, IconButton } from '@mui/material';
 import NotificationsPopover from '../components/NotificationsPopover';
 
 function CustomAccount() {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
-    const handleOpen = (event) => {
+    const handleOpen = (event: any) => {
         setAnchorEl(event.currentTarget);
     };
 

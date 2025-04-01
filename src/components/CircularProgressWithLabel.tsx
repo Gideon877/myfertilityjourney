@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import { Card, CardContent, Typography, Box, CircularProgress } from "@mui/material";
+import React from 'react';
+import { Card, Typography, Box, CircularProgress } from "@mui/material";
 import { circularProgressData } from '../utils/data';
 
-const CircularProgressWithLabel = ({ value, color }) => {
+const CircularProgressWithLabel: React.FC<{ value: number, color: string}> = ({ value, color }) => {
     return (
         <Box sx={{ position: 'relative', display: "inline-flex" }} >
             <CircularProgress variant="determinate" value={100} sx={{ color: "#E0E0E0" }} size={60} thickness={5} />

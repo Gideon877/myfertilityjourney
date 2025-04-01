@@ -2,11 +2,11 @@ import * as React from 'react';
 
 export interface Session {
   user: {
-    name?: string;
-    email?: string;
-    image?: string;
-    firstName?: string;
-    lastName?: string;
+    name?: string | null;
+    email?: string | null;
+    image?: string | null;
+    firstName?: string | null;
+    lastName?: string | null;
   },
 }
 
