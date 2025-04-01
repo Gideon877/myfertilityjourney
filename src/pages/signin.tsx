@@ -30,15 +30,11 @@ export default function SignIn() {
                         result = await signInWithGoogle();
                     }
 
-
+                    const user = result.user;
 
                     if (result?.success && result?.user) {
                         const userSession: Session = {
-                            user: {
-                                name: result.user.displayName || '',
-                                email: result.user.email || '',
-                                image: result.user.photoURL || '',
-                            },
+                            user
                         };
                         setSession(userSession);
                         navigate(callbackUrl || '/', { replace: true });

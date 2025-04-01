@@ -17,6 +17,32 @@ const theme = createTheme({
             // xxl: 1400, 'xxl' does not exist in
         },
     },
+    components: {
+        MuiSvgIcon: {
+            styleOverrides: {
+                root: {
+                   color: '#578388 !important',
+                },
+            },
+        },
+        MuiTypography: {
+            styleOverrides: {
+                body1: {
+                    fontWeight: '400',
+                },
+            },
+        },
+        // MuiButtonBase: { 
+        //     styleOverrides: {
+        //         root: {
+        //             '&.Mui-selected': { // if AppProvider uses Mui-selected class
+        //                 color: 'red',
+        //                 backgroundColor: 'lightgray', // Optional: add background color
+        //             },
+        //         },
+        //     },
+        // },
+    },
 });
 
 export default theme;
