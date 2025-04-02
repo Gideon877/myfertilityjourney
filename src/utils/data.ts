@@ -5,6 +5,7 @@ import {
     mdiDrawPen,
     mdiLightbulbVariantOutline,
 } from '@mdi/js';
+import { CircularProgressItem, Patient } from './interfaces';
 
 
 export const dashboardCardData = [
@@ -46,25 +47,12 @@ export const dashboardCardData = [
     },
 ];
 
-interface CircularProgressItem {
-    value: number;
-    label: 'Pending' | 'Registered' | 'Post Treatment';
-    color: string;
-}
-
 export const circularProgressData: CircularProgressItem[] = [
     { value: 24, label: "Pending", color: "#FF966B" },
     { value: 56, label: "Registered", color: "#54D62C" },
     { value: 20, label: "Post Treatment", color: "#1890FF" },
 ]
 
-export interface Patient {
-    id: number;
-    name: string;
-    age: number;
-    status: 'Pending' | 'Registered' | 'Post Treatment';
-    treatment: string;
-}
 
 export const patientData: Patient[] = [
     { id: 1, name: 'Alice Smith', age: 32, status: 'Pending', treatment: 'Fertility Treatment A' },

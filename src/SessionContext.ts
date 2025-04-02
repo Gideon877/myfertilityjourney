@@ -1,25 +1,19 @@
 import * as React from 'react';
+import { SessionContextType } from './utils/interfaces';
 
 export interface Session {
-  user: {
-    name?: string | null;
-    email?: string | null;
-    image?: string | null;
-    firstName?: string | null;
-    lastName?: string | null;
-  },
+    user: {
+        name?: string | null;
+        email?: string | null;
+        image?: string | null;
+        firstName?: string | null;
+        lastName?: string | null;
+    },
 }
-
-interface SessionContextType {
-  session: Session | null;
-  setSession: (session: Session | null) => void;
-  loading: boolean;
-}
-
 const SessionContext = React.createContext<SessionContextType>({
-  session: null,
-  setSession: () => {},
-  loading: true,
+    session: null,
+    setSession: () => { },
+    loading: true,
 });
 
 export default SessionContext;
