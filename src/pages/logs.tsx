@@ -4,7 +4,7 @@ export default function LogsPage() {
 
 
     return (
-        <Typography>
+        <Typography variant="h5">
             Logs
         </Typography>
     );

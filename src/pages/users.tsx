@@ -5,7 +5,7 @@ export default function UsersPage() {
 
 
     return (
-        <Typography>
+        <Typography variant="h5">
             Manage Users
         </Typography>
     );

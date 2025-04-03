@@ -6,7 +6,7 @@ const theme = createTheme({
     cssVariables: {
         colorSchemeSelector: 'data-toolpad-color-scheme',
     },
-    colorSchemes: { light: true, dark: true },
+    colorSchemes: { light: true },
     breakpoints: {
         values: {
             xs: 432,
@@ -32,16 +32,6 @@ const theme = createTheme({
                 },
             },
         },
-        // MuiButtonBase: { 
-        //     styleOverrides: {
-        //         root: {
-        //             '&.Mui-selected': { // if AppProvider uses Mui-selected class
-        //                 color: 'red',
-        //                 backgroundColor: 'lightgray', // Optional: add background color
-        //             },
-        //         },
-        //     },
-        // },
     },
 });
 

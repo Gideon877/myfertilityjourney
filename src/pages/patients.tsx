@@ -2,15 +2,10 @@ import React, { useState, useEffect } from "react";
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { Card, Typography, Box, IconButton, Tooltip } from '@mui/material';
 import { CheckCircleOutline, CancelOutlined, PendingActionsOutlined } from '@mui/icons-material';
-import { patientData } from "../utils/data";
+import { circularProgressData, patientData } from "../utils/data";
 import TotalPatientsCard from "../components/TotalPatientsCard";
 import { Patient } from "../utils/interfaces";
 
-export const circularProgressData = [
-    { value: 0, label: "Pending", color: "#FF966B" },
-    { value: 0, label: "Registered", color: "#54D62C" },
-    { value: 0, label: "Post Treatment", color: "#1890FF" },
-];
 
 const PatientsPage: React.FC = () => {
     const [patients, setPatients] = useState(patientData);
@@ -89,7 +84,7 @@ const PatientsPage: React.FC = () => {
 
     return (
         <Box>
-            <Typography variant="h5" gutterBottom>My Patients</Typography>
+            <Typography variant="h5" gutterBottom>Manage Patients</Typography>
 
             <Box mt={4}>
                 <TotalPatientsCard progressData={progressData} />

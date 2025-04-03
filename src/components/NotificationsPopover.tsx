@@ -12,7 +12,7 @@ import {
     Button,
     Popover,
 } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteIcon from '@mui/icons-material/DeleteOutline';
 
 const NotificationItem: React.FC<{
     title: string,
@@ -63,7 +63,7 @@ const NotificationsPopover: React.FC<{
                 horizontal: 'right',
             }}
         >
-            <Box sx={{ p: 2, width: 300 }}>
+            <Box sx={{ p: 2, width: 360, height: 327 }}>
                 <Typography variant="h6" gutterBottom>
                     Notifications
                 </Typography>
@@ -71,6 +71,7 @@ const NotificationsPopover: React.FC<{
                     You have 2 unread messages
                 </Typography>
                 <List>
+                    <Divider/>
                     <NotificationItem
                         title="New Registration"
                         name="Alex Fredricks"
@@ -84,7 +85,7 @@ const NotificationsPopover: React.FC<{
                         avatarSrc="https://randomuser.me/api/portraits/men/2.jpg"
                     />
                 </List>
-                <Button fullWidth variant="text" sx={{ mt: 1 }}>
+                <Button fullWidth variant="text" sx={{ mt: 1, mb: 0, textTransform: 'none' }}>
                     Clear All
                 </Button>
             </Box>
