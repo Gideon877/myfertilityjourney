@@ -2,20 +2,20 @@ import React, { useState, useEffect } from "react";
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { Card, Typography, Box, IconButton, Tooltip } from '@mui/material';
 import { CheckCircleOutline, CancelOutlined, PendingActionsOutlined } from '@mui/icons-material';
-import { circularProgressData, patientData } from "../utils/data";
 import TotalPatientsCard from "../components/TotalPatientsCard";
-import { Patient } from "../utils/interfaces";
-
+import { CircularProgressItem, Patient, PatientStore } from "../utils/interfaces";
+import usePatientStore from "../store/usePatientStore";
 
 const PatientsPage: React.FC = () => {
-    const [patients, setPatients] = useState(patientData);
-    const [progressData, setProgressData] = useState(circularProgressData);
+    const patients = usePatientStore((state: PatientStore) => state.patients);
+    const updatePatient = usePatientStore((state: PatientStore) => state.updatePatient);
+    const [progressData, setProgressData] = useState<CircularProgressItem[]>([]);
 
     useEffect(() => {
         updateProgressData(patients);
     }, [patients]);
 
-    const updateProgressData = (updatedPatients: typeof patientData) => {
+    const updateProgressData = (updatedPatients: Patient[]) => {
         const statusCounts = updatedPatients.reduce(
             (acc, patient) => {
                 acc[patient.status]++;
@@ -26,19 +26,17 @@ const PatientsPage: React.FC = () => {
 
         const totalPatients = updatedPatients.length;
 
-        const updatedProgress = circularProgressData.map((item) => ({
-            ...item,
-            value: totalPatients > 0 ? (statusCounts[item.label as keyof typeof statusCounts] / totalPatients) * 100 : 0,
-        }));
+        const updatedProgress: CircularProgressItem[] = [
+            { value: totalPatients > 0 ? (statusCounts.Pending / totalPatients) * 100 : 0, label: "Pending", color: "#FF966B" },
+            { value: totalPatients > 0 ? (statusCounts.Registered / totalPatients) * 100 : 0, label: "Registered", color: "#54D62C" },
+            { value: totalPatients > 0 ? (statusCounts["Post Treatment"] / totalPatients) * 100 : 0, label: "Post Treatment", color: "#1890FF" },
+        ];
 
         setProgressData(updatedProgress);
     };
 
     const handleStatusChange = (id: number, newStatus: Patient["status"]) => {
-        const updatedPatients = patients.map((patient) =>
-            patient.id === id ? { ...patient, status: newStatus } : patient
-        );
-        setPatients(updatedPatients);
+        updatePatient(id, { status: newStatus });
     };
 
     const columnsWithStatusChange: GridColDef[] = [

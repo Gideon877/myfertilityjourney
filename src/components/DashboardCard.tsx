@@ -56,8 +56,6 @@ const DashboardCard: React.FC<{
                     justifyContent: "center",
                 }}
             >
-                {/* <mdiStethoscope sx={{ color: "#1976D2", fontSize: 30 }} /> */}
-                {/* <FontAwesomeIcon icon={} /> */}
                 <Icon path={icon} size={1} />
 
             </Box>

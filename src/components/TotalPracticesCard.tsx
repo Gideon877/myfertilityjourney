@@ -1,43 +1,39 @@
-// TotalPracticesCard.js
 import React, { useState } from "react";
 import { Card, Typography, Box, Switch, IconButton, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import EditIcon from "@mui/icons-material/DriveFileRenameOutline";
 import DeleteIcon from "@mui/icons-material/DeleteOutline";
 import EditPracticeModal from "./EditPracticeModal";
+import usePracticeStore from "../store/usePracticeStore";
+import { Practice } from "../utils/interfaces";
 
 const TotalPracticesCard: React.FC = () => {
-    const [rows, setRows] = useState([
-        { id: 1, name: "Cape Fertility Clinic", tel: "+21 794 3956", email: "info@capefertility.co.za", date: "04/10/2021", status: "Active" },
-        { id: 2, name: "Cape Fertility Clinic", tel: "+21 794 3956", email: "info@capefertility.co.za", date: "04/10/2021", status: "Active" },
-        { id: 3, name: "Cape Fertility Clinic", tel: "+21 794 3956", email: "info@capefertility.co.za", date: "04/10/2021", status: "Disabled" },
-    ]);
+    const rows = usePracticeStore((state) => state.rows);
+    const updateRow = usePracticeStore((state) => state.updateRow);
+    const deleteRow = usePracticeStore((state) => state.deleteRow);
 
-    const [deleteRowId, setDeleteRowId] = useState(null);
+    const [deleteRowId, setDeleteRowId] = useState<number | null>(null);
     const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
     const [openEditModal, setOpenEditModal] = useState(false);
     const [selectedPractice, setSelectedPractice] = useState<any | null>(null);
 
-    const handleEditClick = (id: any) => {
+    const handleEditClick = (id: number) => {
         const practice = rows.find((row) => row.id === id);
         setSelectedPractice(practice);
         setOpenEditModal(true);
     };
 
-    const handleSaveEdit = (editedPractice: any) => {
-        const updatedRows = rows.map((row) =>
-            row.id === editedPractice.id ? editedPractice : row
-        );
-        setRows(updatedRows);
+    const handleSaveEdit = (editedPractice: Practice) => {
+        updateRow(editedPractice);
     };
 
-    const handleDeleteClick = (id: any) => {
+    const handleDeleteClick = (id: number | null) => {
         setDeleteRowId(id);
         setOpenDeleteDialog(true);
     };
 
     const confirmDelete = () => {
-        setRows(rows.filter((row) => row.id !== deleteRowId));
+        deleteRow(deleteRowId!);
         setOpenDeleteDialog(false);
     };
 
@@ -56,10 +52,8 @@ const TotalPracticesCard: React.FC = () => {
             flex: 1,
             renderCell: (params: any) => {
                 const handleStatusChange = (event: any) => {
-                    const updatedRows = rows.map((row) =>
-                        row.id === params.id ? { ...row, status: event.target.checked ? 'Active' : 'Disabled' } : row
-                    );
-                    setRows(updatedRows);
+                    const updatedRow: Practice = { ...params.row, status: event.target.checked ? 'Active' : 'Disabled' };
+                    updateRow(updatedRow);
                 };
 
                 return (
@@ -98,7 +92,18 @@ const TotalPracticesCard: React.FC = () => {
             <Typography variant="h6" fontWeight={600} mb={2}>
                 Newest Practices
             </Typography>
-            <DataGrid rows={rows} columns={columns} getRowId={(row) => row.id} />
+            <DataGrid
+                rows={rows}
+                columns={columns}
+                getRowId={(row) => row.id}
+                initialState={{
+                    pagination: {
+                        paginationModel: {
+                            pageSize: 5,
+                        },
+                    },
+                }}
+            />
             <Dialog open={openDeleteDialog} onClose={cancelDelete}>
                 <DialogTitle>Confirm Delete</DialogTitle>
                 <DialogContent>

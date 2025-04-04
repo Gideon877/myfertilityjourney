@@ -5,9 +5,20 @@ import DashboardCard from '../components/DashboardCard';
 import { dashboardCardData } from '../utils/data';
 import PercentageCard from '../components/CircularProgressWithLabel';
 import TotalPracticesCard from '../components/TotalPracticesCard';
+import usePracticeStore from '../store/usePracticeStore';
 
 const Home: React.FC = () => {
     const { session } = useContext(SessionContext);
+    const practices = usePracticeStore((state) => state.rows);
+    const updatedDashboardData = dashboardCardData.map((card) => {
+        if (card.title === 'Total Practices') {
+            return {
+                ...card,
+                value: practices.length.toString(), 
+            };
+        }
+        return card;
+    });
 
     const user = session?.user
 
@@ -21,13 +32,9 @@ const Home: React.FC = () => {
                     Nulla ut aliquam metus. Integer at diam sem. Nunc finibus nibh vel risus eeleifend laoreet.
                 </Typography>
             </Box>
-            <Box
-                mt={4}
-            // ml={-20} 
-            >
-                {/* sx={{ xs: 12, sm: 6, md: 4 }} */}
+            <Box mt={4} >
                 <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                    {dashboardCardData.map((card, index) => (
+                    {updatedDashboardData.map((card, index) => (
                         <Grid size={4} key={index}>
                             <DashboardCard
                                 title={card.title}

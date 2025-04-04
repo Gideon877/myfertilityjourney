@@ -29,3 +29,38 @@ export interface Patient {
     status: 'Pending' | 'Registered' | 'Post Treatment';
     treatment: string;
 }
+
+export interface PatientStore {
+    patients: Patient[];
+    addPatient: (patient: Omit<Patient, 'id'>) => void;
+    updatePatient: (id: number, updatedPatient: Partial<Patient>) => void;
+    deletePatient: (id: number) => void;
+}
+
+export interface Practice {
+    id: number;
+    name: string;
+    tel: string;
+    email: string;
+    date: string;
+    status: 'Active' | 'Disabled';
+}
+
+export interface PracticeStore {
+    rows: Practice[];
+    updateRow: (updatedRow: Practice) => void;
+    deleteRow: (id: number) => void;
+
+}
+
+export interface UserData {
+    id: string; 
+    displayName: string;
+    email: string;
+}
+
+export interface UserData {
+    id: string;
+    displayName: string;
+    email: string;
+}
