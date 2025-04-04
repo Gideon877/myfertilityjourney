@@ -6,13 +6,13 @@ import { PageContainer } from '@toolpad/core/PageContainer';
 import { Account, AccountPreview, SignOutButton } from '@toolpad/core/Account';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { useSession } from '../SessionContext';
-import { Badge, Button, Divider, IconButton, Stack, Typography } from '@mui/material';
+import { Badge, Button, Divider, IconButton, Stack } from '@mui/material';
 import NotificationsPopover from '../components/NotificationsPopover';
 
 function CustomAccount() {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const navigate = useNavigate();
-    const { session } = useSession(); 
+
     const handleOpen = (event: any) => {
         setAnchorEl(event.currentTarget);
     };
@@ -24,25 +24,19 @@ function CustomAccount() {
         <React.Fragment>
             <IconButton onClick={handleOpen}>
                 <Badge badgeContent={2} color='error'>
-                    <NotificationsIcon sx={{ borderRadius: '8px'}} />
+                    <NotificationsIcon sx={{ borderRadius: '8px' }} />
                 </Badge>
             </IconButton>
-            {/* <Stack direction="row" alignItems="center" spacing={1} sx={{ cursor: 'pointer' }} onClick={handleOpen}>
-                <Typography variant="body1" fontWeight="bold">
-                    {session?.user?.name || "User Name"}  
-                </Typography>
-               
-            </Stack> */}
             <Account
                 localeText={{
                     accountSignOutLabel: 'Logout',
                 }}
                 slots={{
                     popoverContent: (() =>
-                        <Stack direction="column" sx={{ borderRadius: '8px'}}>
+                        <Stack direction="column" sx={{ borderRadius: '8px' }}>
                             <AccountPreview
-                                variant='expanded'
-                                sx={{ "& .MuiAvatar-root": { display: "none"}, paddingLeft: 'inherit'  }}
+                                variant='expanded' showEmail={false}
+                                sx={{ "& .MuiAvatar-root": { display: "none" }, paddingLeft: 'inherit' }}
                             />
                             <Divider />
                             <Button
@@ -64,15 +58,36 @@ function CustomAccount() {
                         </Stack>
                     )
                 }}
-                
+
+                slotProps={{
+                    preview: {
+                        variant: 'expanded',
+                        slotProps: {
+                            avatarIconButton: {
+                                sx: {
+                                    width: 'fit-content',
+                                    margin: 'auto',
+                                },
+                            },
+                            avatar: {
+                                sx: {
+                                    width: '40px',
+                                    height: '40px',
+                                },
+                            },
+                        },
+
+                    },
+                }}
+
             />
-            
+
 
             <NotificationsPopover
                 anchorEl={anchorEl}
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
-                
+
             />
         </React.Fragment>
     );
