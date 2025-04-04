@@ -7,16 +7,16 @@ const theme = createTheme({
         colorSchemeSelector: 'data-toolpad-color-scheme',
     },
     colorSchemes: { light: true },
-    breakpoints: {
-        values: {
-            xs: 432,
-            sm: 576,
-            md: 768,
-            lg: 992,
-            xl: 1200,
-            // xxl: 1400, 'xxl' does not exist in
-        },
-    },
+    // breakpoints: {
+    //     values: {
+    //         xs: 432,
+    //         sm: 576,
+    //         md: 768,
+    //         lg: 992,
+    //         xl: 1200,
+    //         // xxl: 1400, 'xxl' does not exist in
+    //     },
+    // },
     components: {
         MuiSvgIcon: {
             styleOverrides: {
