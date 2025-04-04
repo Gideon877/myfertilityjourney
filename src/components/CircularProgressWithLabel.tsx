@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Typography, Box, CircularProgress } from "@mui/material";
-import { circularProgressData } from '../utils/data';
+import { generateCircularProgressData } from '../utils/data';
 
 const CircularProgressWithLabel: React.FC<{ value: number, color: string}> = ({ value, color }) => {
     return (
@@ -34,7 +34,7 @@ const CircularProgressWithLabel: React.FC<{ value: number, color: string}> = ({ 
 const TotalPracticesCard = () => {
     return (
         <Card sx={{ display: "flex", justifyContent: "space-around", p: 2, borderRadius: 3, boxShadow: 2 }}>
-            {circularProgressData.map((item, index) => (
+            {generateCircularProgressData().map((item, index) => (
                 <Box key={index} display="flex" alignItems="center" gap={2}>
                     <CircularProgressWithLabel value={item.value} color={item.color} />
                     <Box textAlign="left" m={3}>
